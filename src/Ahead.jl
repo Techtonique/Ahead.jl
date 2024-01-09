@@ -28,8 +28,8 @@ module Ahead
     CRAN = 'https://cloud.r-project.org'))"
 	R"utils::install.packages('ahead', dependencies=TRUE)"
 
-	@rimport base as rbase
-	@rimport ahead as rahead
+	rbase = reval("base");
+	rahead = reval("ahead");
 
 	function foo(x)
 		rbase.sum([1, 2, 3], var"rm.na" = true)
