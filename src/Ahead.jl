@@ -1,11 +1,11 @@
 module Ahead		
 	
-	import RCall as rc 
+	using RCall
 
-	rc.reval("options(repos = c(
-    techtonique = 'https://techtonique.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))")    
-	rc.reval("install.packages('ahead')")	
+	run(`sudo usermod -a -G staff whoami`)
+	R"options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
+    CRAN = 'https://cloud.r-project.org'))"
+	rc.reval("utils::install.packages('ahead', dependencies=TRUE)")	
 
 	@rimport base as rbase
 	@rimport ahead as rahead
