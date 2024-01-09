@@ -9,7 +9,7 @@ module Ahead
 
 	R"options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
     CRAN = 'https://cloud.r-project.org'))"
-	rc.reval("utils::install.packages('ahead', dependencies=TRUE)")	
+	reval("utils::install.packages('ahead', dependencies=TRUE)")	
 
 	@rimport base as rbase
 	@rimport ahead as rahead
