@@ -29,9 +29,11 @@ module Ahead
 	R"utils::install.packages('ahead', dependencies=TRUE)"
 
 	R"library(ahead)"
+	R"library(base)"	
 
-	function foo(x)
-		# use ahead here
+	function foo()
+		dynrmf = rcopy(R"ahead::dynrmf")
+		return R"ahead::dynrmf(c(1, 2 ,3 ,4, 5))"	
 	end 
 
 	# exports 
