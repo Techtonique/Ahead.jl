@@ -36,12 +36,12 @@ module Ahead
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion
 		print("in function 'foo'")
-		R"try(library(ahead), silent = TRUE)"
-		try
-			res = rcopy(R"ahead::dynrmf(c(1, 2, 3, 4, 5))")		
-		catch
-			res = 0
-		end
+		R"load_ahead <- try(library(ahead), silent = TRUE)"
+		R"if(inherits(load_ahead, 'try-error')) { print('find or create another lib destination, ask ChatGPT')}"	
+		res = 0
+			try
+				res = rcopy(R"ahead::dynrmf(c(1, 2, 3, 4, 5))")						
+			end
 		return res
 	end 	
 
