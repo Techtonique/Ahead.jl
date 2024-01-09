@@ -41,7 +41,8 @@ module Ahead
 			res = rcopy(R"ahead::dynrmf(c(1, 2, 3, 4, 5))")		
 		catch
 			res = 0
+		end
 		return res
 	end 	
 
-end
+end;
