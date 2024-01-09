@@ -4,8 +4,8 @@ module Ahead
 
 	rc.reval("options(repos = c(
     techtonique = 'https://techtonique.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'));    
-	install.packages("ahead")")	
+    CRAN = 'https://cloud.r-project.org'))")    
+	rc.reval("install.packages('ahead')")	
 
 	@rimport base as rbase
 	@rimport ahead as rahead
