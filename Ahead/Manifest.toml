@@ -2,15 +2,7 @@
 
 julia_version = "1.10.0"
 manifest_format = "2.0"
-project_hash = "7a2d2dd43dcf5281bf3e0bad350fc711c20e25cf"
-
-[[deps.Ahead]]
-deps = ["Pkg", "RCall"]
-git-tree-sha1 = "5cebb59c31c9497274c24726660ca155f091a502"
-repo-rev = "main"
-repo-url = "https://github.com/Techtonique/Ahead.jl"
-uuid = "e561dd4c-0aa7-4ba4-aacb-df50ed0db7d4"
-version = "0.1.0"
+project_hash = "45413144b87285c4aa40faf29f782c773ee6d385"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
