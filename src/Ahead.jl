@@ -19,7 +19,7 @@ module Ahead
 
 	using RCall
 
-	if Sys.islinux() || Sys.isapple()
+	if Sys.islinux()
 		username = strip(chomp(read(`whoami`, String)))
 		run(`sudo usermod -aG staff $username`)
 	end
