@@ -1,4 +1,11 @@
-module Ahead		
+module Ahead	
+	
+	if Sys.islinux()
+		run(`sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9`)
+		run(`sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'`)
+		run(`sudo apt update`)
+		run(`sudo apt install r-base`)
+	end	
 	
 	# Run the `which R` command to get the path to the R executable
 	output = strip(chomp(read(`which R`, String)))

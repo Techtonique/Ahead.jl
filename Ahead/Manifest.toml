@@ -6,7 +6,7 @@ project_hash = "7a2d2dd43dcf5281bf3e0bad350fc711c20e25cf"
 
 [[deps.Ahead]]
 deps = ["Pkg", "RCall"]
-git-tree-sha1 = "48304471b13b31826beb97451db68267ddae379f"
+git-tree-sha1 = "c537f17fc9e7c3a5ed2fc370211860f6db418b37"
 repo-rev = "main"
 repo-url = "https://github.com/Techtonique/Ahead.jl"
 uuid = "e561dd4c-0aa7-4ba4-aacb-df50ed0db7d4"
