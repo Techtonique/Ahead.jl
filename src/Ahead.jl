@@ -28,11 +28,10 @@ module Ahead
     CRAN = 'https://cloud.r-project.org'))"
 	R"utils::install.packages('ahead', dependencies=TRUE)"
 
-	rbase = reval("base");
-	rahead = reval("ahead");
+	@rlibrary ahead
 
 	function foo(x)
-		rbase.sum([1, 2, 3], var"rm.na" = true)
+		# use ahead here
 	end 
 
 	# exports 
