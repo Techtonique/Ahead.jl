@@ -28,13 +28,17 @@ module Ahead
 	R"options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
     CRAN = 'https://cloud.r-project.org'))"
 	R"install_ahead <- try(utils::install.packages('ahead', dependencies=TRUE), silent = TRUE)"
-	R"if(inherits(install_ahead, 'try-error'))"	
+	R"if(inherits(install_ahead, 'try-error')) {}"	
 
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion
 		print("in function 'foo'")
-		R"library(ahead)"
-		return rcopy(R"ahead::dynrmf(c(1, 2, 3, 4, 5))")
+		R"try(library(ahead), silent = TRUE)"
+		try
+			res = rcopy(R"ahead::dynrmf(c(1, 2, 3, 4, 5))")		
+		catch
+			res = 0
+		return res
 	end 
 
 	# exports 
