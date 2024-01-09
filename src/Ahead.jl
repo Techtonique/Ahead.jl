@@ -39,7 +39,7 @@ module Ahead
 		print("in function 'foo'")		
 		res = 0	
 			try
-				res = rcopy(R"ahead::dynrmf(c(1, 2, 3, 4, 5))")	
+				res = rcopy(R"try(ahead::dynrmf(c(1, 2, 3, 4, 5)), silent = TRUE)")	
 			finally					
 				res = 0
 			end
