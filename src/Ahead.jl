@@ -28,7 +28,7 @@ module Ahead
     CRAN = 'https://cloud.r-project.org'))"
 	R"utils::install.packages('ahead', dependencies=TRUE)"
 
-	@rlibrary ahead
+	R"library(ahead)"
 
 	function foo(x)
 		# use ahead here
