@@ -32,12 +32,11 @@ module Ahead
     CRAN = 'https://cloud.r-project.org'))"
 	R"install_ahead <- try(utils::install.packages('ahead', dependencies=TRUE), silent = TRUE)"
 	R"if(inherits(install_ahead, 'try-error')) { print('find or create another lib destination, ask ChatGPT')}"	
-
+	R"load_ahead <- try(library(ahead), silent = TRUE)"
+	
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion
-		print("in function 'foo'")
-		R"load_ahead <- try(library(ahead), silent = TRUE)"
-		R"if(inherits(load_ahead, 'try-error')) { print('find or create another lib destination, ask ChatGPT')}"
+		print("in function 'foo'")		
 		res = 0	
 			try
 				res = rcopy(R"ahead::dynrmf(c(1, 2, 3, 4, 5))")	
