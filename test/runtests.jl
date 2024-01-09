@@ -2,5 +2,6 @@ using Ahead
 using Test
 
 @testset "Ahead.jl" begin
-    # Write your tests here.
+	val = foo(1)
+    @test  val == 0
 end
