@@ -31,7 +31,7 @@ module Ahead
 	R"options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
     CRAN = 'https://cloud.r-project.org'))"
 	R"install_ahead <- try(utils::install.packages('ahead', dependencies=TRUE), silent = TRUE)"
-	R"if(inherits(install_ahead, 'try-error')) { # find or create another lib destination, ask ChatGPT}"	
+	R"if(inherits(install_ahead, 'try-error')) { print("find or create another lib destination, ask ChatGPT")}"	
 
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion
