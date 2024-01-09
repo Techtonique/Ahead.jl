@@ -1,4 +1,7 @@
 module Ahead	
+
+	# exports 
+	export foo 
 	
 	if Sys.islinux()		
 		run(`ls -la`)
@@ -39,9 +42,6 @@ module Ahead
 		catch
 			res = 0
 		return res
-	end 
-
-	# exports 
-	export foo 
+	end 	
 
 end
