@@ -1,5 +1,10 @@
 module Ahead		
 	
+	using Pkg
+
+	Pkg.add('RCall')
+	Pkg.build('RCall')
+
 	using RCall
 
 	if Sys.islinux()		
