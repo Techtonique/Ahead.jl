@@ -24,17 +24,16 @@ module Ahead
 		run(`sudo usermod -aG staff $username`)
 	end
 
-	R"options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
+	R"""options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
     CRAN = 'https://cloud.r-project.org'))"
-	R"install_ahead <- try(utils::install.packages('ahead', dependencies=TRUE), silent = FALSE)"
-	R"if inherits(install_ahead, 'try-error') stop('INSTALL PACKAGE SOMEWHERE ELSE')"
-
-	R"library(ahead)"
-	R"library(base)"	
+	install_ahead <- try(utils::install.packages('ahead', dependencies=TRUE), silent = TRUE)
+	if inherits(install_ahead, 'try-error') stop('INSTALL PACKAGE SOMEWHERE ELSE')
+	library(ahead)
+	"""
 
 	function foo(x)
-		dynrmf = rcopy(R"ahead::dynrmf")
-		return R"ahead::dynrmf(c(1, 2 ,3 ,4, 5))"	
+		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion
+		return rcopy(R"ahead::dynrmf(c(1, 2 ,3 ,4, 5))")
 	end 
 
 	# exports 
