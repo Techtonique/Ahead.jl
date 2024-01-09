@@ -1,5 +1,17 @@
 module Ahead		
 	
+	# Run the `which R` command to get the path to the R executable
+	output = strip(chomp(read(`which R`, String)))
+
+	# Check if the output is not an empty string (R executable path found)
+	if output != ""
+	    # Set the obtained R executable path to ENV["R_HOME"]
+	    ENV["R_HOME"] = output
+	    println("R_HOME set to: ", ENV["R_HOME"])
+	else
+	    println("R executable not found.")
+	end
+
 	using RCall
 
 	if Sys.islinux()		
