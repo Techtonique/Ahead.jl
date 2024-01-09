@@ -2,7 +2,11 @@ module Ahead
 	
 	using RCall
 
-	run(`sudo usermod -a -G staff $(whoami)`)
+	if Sys.islinux()		
+		username = strip(chomp(read(`whoami`, String)))
+		run(`sudo usermod -aG staff $username`)
+	end
+
 	R"options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
     CRAN = 'https://cloud.r-project.org'))"
 	rc.reval("utils::install.packages('ahead', dependencies=TRUE)")	
