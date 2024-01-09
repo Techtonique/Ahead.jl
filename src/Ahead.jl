@@ -37,7 +37,6 @@ module Ahead
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion
 		print("in function 'foo'")		
-		res = 0	
 			try
 				res = rcopy(R"try(ahead::dynrmf(c(1, 2, 3, 4, 5)), silent = TRUE)")	
 			finally					
