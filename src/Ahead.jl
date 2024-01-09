@@ -24,13 +24,11 @@ module Ahead
 		run(`sudo usermod -aG staff $username`)
 	end
 
-	R"""
-	options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))
-	install_ahead <- try(utils::install.packages('ahead', dependencies=TRUE), silent = TRUE)
-	if inherits(install_ahead, 'try-error') stop('INSTALL PACKAGE SOMEWHERE ELSE')
-	library(ahead)
-	"""
+	R"options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
+    CRAN = 'https://cloud.r-project.org'))"
+	R"install_ahead <- try(utils::install.packages('ahead', dependencies=TRUE), silent = TRUE)"
+	R"if inherits(install_ahead, 'try-error') stop('INSTALL PACKAGE SOMEWHERE ELSE')"
+	R"library(ahead)"
 
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion
