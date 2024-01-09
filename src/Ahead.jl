@@ -26,7 +26,7 @@ module Ahead
 
 	R"options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
     CRAN = 'https://cloud.r-project.org'))"
-	reval("utils::install.packages('ahead', dependencies=TRUE)")	
+	R"utils::install.packages('ahead', dependencies=TRUE)"
 
 	@rimport base as rbase
 	@rimport ahead as rahead
