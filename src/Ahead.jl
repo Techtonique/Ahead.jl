@@ -24,8 +24,9 @@ module Ahead
 		run(`sudo usermod -aG staff $username`)
 	end
 
-	R"""options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))"
+	R"""
+	options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
+    CRAN = 'https://cloud.r-project.org'))
 	install_ahead <- try(utils::install.packages('ahead', dependencies=TRUE), silent = TRUE)
 	if inherits(install_ahead, 'try-error') stop('INSTALL PACKAGE SOMEWHERE ELSE')
 	library(ahead)
