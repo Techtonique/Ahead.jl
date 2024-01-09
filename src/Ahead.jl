@@ -27,7 +27,7 @@ module Ahead
 	R"options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
     CRAN = 'https://cloud.r-project.org'))"
 	R"install_ahead <- try(utils::install.packages('ahead', dependencies=TRUE), silent = TRUE)"
-	R"if inherits(install_ahead, 'try-error') stop('INSTALL PACKAGE SOMEWHERE ELSE')"
+	R"stopifnot(!inherits(install_ahead, 'try-error'))"
 	R"library(ahead)"
 
 	function foo(x)
