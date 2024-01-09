@@ -1,0 +1,13 @@
+name = "Ahead"
+uuid = "e561dd4c-0aa7-4ba4-aacb-df50ed0db7d4"
+authors = ["thierrymoudiki <thierry.moudiki@gmail.com> and contributors"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.6"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
