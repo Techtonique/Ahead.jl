@@ -1,10 +1,8 @@
 module Ahead	
 	
-	if Sys.islinux()
-		run(`sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9`)
-		run(`sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'`)
+	if Sys.islinux()		
 		run(`sudo apt update`)
-		run(`sudo apt install r-base`)
+		run(`sudo apt install r-base r-base-dev -y`)
 	end	
 	
 	# Run the `which R` command to get the path to the R executable
@@ -21,7 +19,7 @@ module Ahead
 
 	using RCall
 
-	if Sys.islinux()		
+	if Sys.islinux() || Sys.isapple()
 		username = strip(chomp(read(`whoami`, String)))
 		run(`sudo usermod -aG staff $username`)
 	end
