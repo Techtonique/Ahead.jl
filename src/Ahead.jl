@@ -26,12 +26,13 @@ module Ahead
 
 	R"options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
     CRAN = 'https://cloud.r-project.org'))"
-	R"utils::install.packages('ahead', dependencies=TRUE)"
+	R"install_ahead <- try(utils::install.packages('ahead', dependencies=TRUE), silent = FALSE)"
+	R"if inherits(install_ahead, 'try-error') stop('INSTALL PACKAGE SOMEWHERE ELSE')"
 
 	R"library(ahead)"
 	R"library(base)"	
 
-	function foo()
+	function foo(x)
 		dynrmf = rcopy(R"ahead::dynrmf")
 		return R"ahead::dynrmf(c(1, 2 ,3 ,4, 5))"	
 	end 
