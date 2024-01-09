@@ -2,11 +2,11 @@
 
 julia_version = "1.10.0"
 manifest_format = "2.0"
-project_hash = "9ce6cb1df8aaa56c90e63abcae4c91ad05bd9d12"
+project_hash = "7a2d2dd43dcf5281bf3e0bad350fc711c20e25cf"
 
 [[deps.Ahead]]
 deps = ["Pkg", "RCall"]
-git-tree-sha1 = "d1b027f12f891bf8c440b280077d3686a984df5a"
+git-tree-sha1 = "47aaf3eb997dd9e8aed9b12ca197c6c71bb7667c"
 repo-rev = "main"
 repo-url = ".."
 uuid = "e561dd4c-0aa7-4ba4-aacb-df50ed0db7d4"
