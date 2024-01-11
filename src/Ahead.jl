@@ -27,6 +27,8 @@ module Ahead
 		username = strip(chomp(read(`whoami`, String)))
 		run(`sudo usermod -aG staff $username`)
 	end
+
+	R"utils::install.packages(c('foreach', 'Rcpp', 'snow'))"
 	
 	R"install_ahead <- try(utils::install.packages('ahead', repos = c('https://techtonique.r-universe.dev', 'https://cloud.r-project.org'), dependencies=TRUE), silent = TRUE)"
 	R"if(inherits(install_ahead, 'try-error')) {dir.create('r_libs_user', recursive = TRUE); 
