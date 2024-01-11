@@ -27,13 +27,11 @@ module Ahead
 		username = strip(chomp(read(`whoami`, String)))
 		run(`sudo usermod -aG staff $username`)
 	end
-
-	R"utils::install.packages(c('foreach', 'Rcpp', 'snow'))"
 	
-	R"install_ahead <- try(utils::install.packages('ahead', repos = c('https://techtonique.r-universe.dev', 'https://cloud.r-project.org'), dependencies=TRUE), silent = TRUE)"
+	R"install_ahead <- try(utils::install.packages(c('foreach', 'Rcpp', 'snow', 'ahead'), repos = c('https://techtonique.r-universe.dev', 'https://cloud.r-project.org'), dependencies=TRUE), silent = TRUE)"
 	R"if(inherits(install_ahead, 'try-error')) {dir.create('r_libs_user', recursive = TRUE); 
 	.libPaths('r_libs_user')
-	; utils::install.packages('ahead', repos = c('https://techtonique.r-universe.dev', 'https://cloud.r-project.org'), dependencies=TRUE)}"	
+	; utils::install.packages(c('foreach', 'Rcpp', 'snow', 'ahead'), repos = c('https://techtonique.r-universe.dev', 'https://cloud.r-project.org'), dependencies=TRUE)}"	
 	
 	R"load_ahead <- try(library(ahead), silent = TRUE)"
 	R"if(inherits(install_ahead, 'try-error')) {utils::install.packages('https://techtonique.r-universe.dev/src/contrib/ahead_0.9.0.tar.gz', repos = NULL, type = 'source', dependencies = TRUE); library(ahead)}"
