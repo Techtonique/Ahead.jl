@@ -29,7 +29,7 @@ module Ahead
 	end
 	
 	R"install_ahead <- try(utils::install.packages('ahead', repos = c('https://techtonique.r-universe.dev', 'https://cloud.r-project.org'), dependencies=TRUE), silent = TRUE)"
-	R"if(inherits(install_ahead, 'try-error')) {dir.create(sys.getenv("r_libs_user"), recursive = true); 
+	R"if(inherits(install_ahead, 'try-error')) {dir.create(sys.getenv('r_libs_user'), recursive = true); 
 	.libpaths(sys.getenv('r_libs_user'))
 	; utils::install.packages('ahead', dependencies=TRUE)}"	
 	
