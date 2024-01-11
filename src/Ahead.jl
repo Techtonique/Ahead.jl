@@ -34,7 +34,7 @@ module Ahead
 	; utils::install.packages('ahead', repos = c('https://techtonique.r-universe.dev', 'https://cloud.r-project.org'), dependencies=TRUE)}"	
 	
 	R"load_ahead <- try(library(ahead), silent = TRUE)"
-	R"if(inherits(install_ahead, 'try-error')) {utils::install.packages('./ahead_0.9.0.tar.gz', repos = NULL, type = 'source', dependencies = TRUE); library(ahead)}"
+	R"if(inherits(install_ahead, 'try-error')) {utils::install.packages('https://techtonique.r-universe.dev/src/contrib/ahead_0.9.0.tar.gz', repos = NULL, type = 'source', dependencies = TRUE); library(ahead)}"
 	
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion				
