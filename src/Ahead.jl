@@ -34,20 +34,11 @@ module Ahead
 	; utils::install.packages('ahead', repos = c('https://techtonique.r-universe.dev', 'https://cloud.r-project.org'), dependencies=TRUE)}"	
 	
 	R"load_ahead <- try(library(ahead), silent = TRUE)"
-
-	R"package_path <- 'ahead_0.9.0.tar.gz';
-	  install.packages(package_path, repos = NULL, type = 'source', dependencies = TRUE)"
+	R"if(inherits(install_ahead, 'try-error')) {utils::install.packages('./ahead_0.9.0.tar.gz', repos = NULL, type = 'source', dependencies = TRUE); library(ahead)}"
 	
 	function foo(x)
-		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion
-		print("in function 'foo'")		
-		res = 0
-			try
-				res = rcopy(R"try(ahead::dynrmf(c(1, 2, 3, 4, 5)), silent = TRUE)")	
-			finally					
-				res = 0
-			end
-		return res
+		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion				
+		return rcopy(R"try(ahead::dynrmf(c(1, 2, 3, 4, 5)), silent = TRUE)")	
 	end 	
 
 end;
