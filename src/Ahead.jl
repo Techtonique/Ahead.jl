@@ -34,7 +34,7 @@ module Ahead
 	; utils::install.packages('ahead', dependencies=TRUE)}"	
 	
 	R"load_ahead <- try(library(ahead), silent = TRUE)"
-	R"if(inherits(load_ahead, 'try-error')) { library(ahead, lib.loc='./r-pkgs') }"
+	R"if(inherits(load_ahead, 'try-error')) { library(ahead, lib.loc='r_libs_user') }"
 	
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion
