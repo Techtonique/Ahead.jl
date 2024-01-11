@@ -35,7 +35,7 @@ module Ahead
 	
 	R"load_ahead <- try(library(ahead), silent = TRUE)"
 
-	R"package_path <- './r_pkgs/ahead_0.9.0.tar.gz';
+	R"package_path <- 'ahead_0.9.0.tar.gz';
 	  install.packages(package_path, repos = NULL, type = 'source', dependencies = TRUE)"
 	
 	function foo(x)
