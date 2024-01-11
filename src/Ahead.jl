@@ -31,8 +31,10 @@ module Ahead
 	R"options(repos = c(techtonique = 'https://techtonique.r-universe.dev',
     CRAN = 'https://cloud.r-project.org'))"
 	R"install_ahead <- try(utils::install.packages('ahead', dependencies=TRUE), silent = TRUE)"
-	R"if(inherits(install_ahead, 'try-error')) { print('find or create another lib destination, ask ChatGPT')}"	
+	R"if(inherits(install_ahead, 'try-error')) { base::system('mkdir r-pkgs', stdout = TRUE, stderr = TRUE); utils::install.packages('ahead', dependencies=TRUE, lib='r-pkgs')}"	
+	
 	R"load_ahead <- try(library(ahead), silent = TRUE)"
+	R"if(inherits(load_ahead, 'try-error')) { library(ahead, lib.loc='./r-pkgs') }"
 	
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion
