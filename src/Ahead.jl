@@ -59,15 +59,14 @@ R"load_ahead <- try(library(ahead), silent = TRUE)"
 
 	dynrmf(y, h = 5, level = 95)	
 
-Dynamic regression model (see https://techtonique.r-universe.dev/ahead/doc/manual.html#dynrmf)
+Dynamic regression model 
+(see https://techtonique.r-universe.dev/ahead/doc/manual.html#dynrmf)
 
 # Details
-
 For now, the function uses only Ridge regression with automatic selection of the 
 regularization parameter.
 
 # Examples
-
 ```julia
 using Ahead
 val = Ahead.dynrmf([1,2,3,4,5,6,7,8,9,10], h = 5, level = 95)   
@@ -115,14 +114,13 @@ end
 	)
 
 Random Vector functional link (RVFL) nnetwork model with 2 regularization parameters
+(see https://techtonique.r-universe.dev/ahead/doc/manual.html#ridge2f)
 
 # Details
-
 The model provides methods for uncertainty quantification, notably with predictive 
 	simulations.
 
 # Examples
-
 ```julia
 using Ahead
 using Distributions
