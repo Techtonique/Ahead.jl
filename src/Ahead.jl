@@ -51,7 +51,7 @@ module Ahead
 	end
 		
 	R"load_ahead <- try(library(ahead), silent = TRUE)"
-	R"if(inherits(load_ahead, 'try-error')) {utils::install.packages('.', repos = NULL, lib='.', type = 'source', dependencies = TRUE); library(ahead)}"
+	#R"if(inherits(load_ahead, 'try-error')) {utils::install.packages('ahead', repos = NULL, lib='.', type = 'source', dependencies = TRUE); library(ahead)}"
 	
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion				
