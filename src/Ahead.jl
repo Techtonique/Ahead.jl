@@ -57,4 +57,4 @@ module Ahead
 		return rcopy(R"try(ahead::dynrmf(c(1, 2, 3, 4, 5)), silent = TRUE)")	
 	end 	
 
-end;
+end
