@@ -3,5 +3,6 @@ using Test
 
 @testset "Ahead.jl" begin
 	val = Ahead.foo(1)
-    @test  round(val['residuals'][1]; digits=1) == 0.0
+    print(val['residuals'][1])
+    @test isapprox(val['residuals'][1], 0)
 end
