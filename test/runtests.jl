@@ -14,7 +14,7 @@ using Test
     # Test Ahead.ridge2f ----------------------------
 	Random.seed!(123)
 	y = rand(100, 5)
-    val = Ahead.ridge2f(y, h = 5, level = 95)
+    val = Ahead.ridge2f(Dict("y" => y, "h" => 5, "level" => 95))
 	@test val[:x] == y
 
 end
