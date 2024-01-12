@@ -81,11 +81,11 @@ module Ahead
 	# multivariate time series forecasting models ---------------------------------------------- 
 
 	"""
-	Random Vector functional link (RVFL) nnetwork model with 2 regularization parameters (see https://techtonique.r-universe.dev/ahead/doc/manual.html#ridge2f)
+	Random Vector functional link (RVFL) nnetwork model with 2 regularization parameters
 
 	# Details
 
-	The model is based on an RVFL model (see https://www.mdpi.com/2227-9091/6/1/22) with 2 regularization parameters, and provides some uncertainty quantification.
+	The model provides methods for uncertainty quantification, notably with predictive simulations.
 
 	# Examples
 
