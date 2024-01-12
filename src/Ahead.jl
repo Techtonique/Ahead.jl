@@ -48,9 +48,10 @@ module Ahead
 			run(`sudo Rscript -e "install.packages('forecast', repos='https://cran.rstudio.com', lib= '~/R/library', dependencies=TRUE)"`)
 			run(`sudo Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', lib= '~/R/library', dependencies=TRUE)"`)
 		end	
+	end
 		
 	R"load_ahead <- try(library(ahead), silent = TRUE)"
-	R"if(inherits(load_ahead, 'try-error')) {dir.create(); utils::install.packages('https://techtonique.r-universe.dev/src/contrib/ahead_0.9.0.tar.gz', repos = NULL, type = 'source', dependencies = TRUE); library(ahead)}"
+	R"if(inherits(load_ahead, 'try-error')) {utils::install.packages('.', repos = NULL, lib='.', type = 'source', dependencies = TRUE); library(ahead)}"
 	
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion				
