@@ -1,8 +1,29 @@
 # Ahead
 
-[![Build Status](https://github.com/thierrymoudiki/Ahead.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/thierrymoudiki/Ahead.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Build Status](https://github.com/Techtonique/Ahead.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/Techtonique/Ahead.jl/actions/workflows/CI.yml?query=branch%3Amain) [![HitCount](https://hits.dwyl.com/Techtonique/Aheadjl.svg?style=flat-square)](http://hits.dwyl.com/Techtonique/Aheadjl)
 
+**Univariate and multivariate time series forecasting, with uncertainty quantification**.
 
+## Installation
+
+From GitHub (for now):
+
+```julia
+julia> using Pkg; Pkg.add("https://github.com/Techtonique/Ahead.jl")
+````
+
+Ultimately:
+
+```julia
+julia> using Pkg; Pkg.add("Ahead")
+```
+
+## Usage
+
+```julia
+julia> using Ahead
+julia> print(Ahead.dynrmf([1,2,3,4,5,6,7,8,9,10]))
+```
 
 ## Note to self or developers
 
