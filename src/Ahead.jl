@@ -11,6 +11,7 @@ module Ahead
 		run(`sudo apt update`)
 		run(`sudo apt upgrade`)
 		run(`Rscript --version`)
+		run(`sudo chown -R $USER:$USER /usr/local/lib/R/site-library`) # check permissions
 	end	
 	
 	# Run the `which R` command to get the path to the R executable
@@ -32,16 +33,24 @@ module Ahead
 		run(`sudo usermod -aG staff $username`)
 	end
 
-	if Sys.islinux() || Sys.isapple()		
-		run(`Rscript -e "utils::install.packages('foreach', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
-		run(`Rscript -e "utils::install.packages('Rcpp', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
-		run(`Rscript -e "utils::install.packages('snow', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
-		run(`Rscript -e "utils::install.packages('forecast', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
-		run(`Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', dependencies=TRUE)"`)
-	end	
+	if Sys.islinux() || Sys.isapple()
+		try		
+			run(`sudo Rscript -e "utils::install.packages('foreach', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+			run(`sudo Rscript -e "utils::install.packages('Rcpp', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+			run(`sudo Rscript -e "utils::install.packages('snow', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+			run(`sudo Rscript -e "utils::install.packages('forecast', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+			run(`sudo Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', dependencies=TRUE)"`)
+		catch e
+			run(`mkdir -p ~/R/library`)	
+			run(`sudo Rscript -e "install.packages('foreach', repos='https://cran.rstudio.com', lib= '~/R/library', dependencies=TRUE)"`)
+			run(`sudo Rscript -e "install.packages('Rcpp', repos='https://cran.rstudio.com', lib= '~/R/library', dependencies=TRUE)"`)
+			run(`sudo Rscript -e "install.packages('snow', repos='https://cran.rstudio.com', lib= '~/R/library', dependencies=TRUE)"`)
+			run(`sudo Rscript -e "install.packages('forecast', repos='https://cran.rstudio.com', lib= '~/R/library', dependencies=TRUE)"`)
+			run(`sudo Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', lib= '~/R/library', dependencies=TRUE)"`)
+		end	
 		
 	R"load_ahead <- try(library(ahead), silent = TRUE)"
-	R"if(inherits(load_ahead, 'try-error')) {utils::install.packages('https://techtonique.r-universe.dev/src/contrib/ahead_0.9.0.tar.gz', repos = NULL, type = 'source', dependencies = TRUE); library(ahead)}"
+	R"if(inherits(load_ahead, 'try-error')) {dir.create(); utils::install.packages('https://techtonique.r-universe.dev/src/contrib/ahead_0.9.0.tar.gz', repos = NULL, type = 'source', dependencies = TRUE); library(ahead)}"
 	
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion				
