@@ -11,7 +11,8 @@ module Ahead
 		run(`sudo apt update`)
 		run(`sudo apt upgrade`)
 		run(`Rscript --version`)
-		run(`sudo chown -R $USER:$USER /usr/local/lib/R/site-library`) # check permissions
+		username = strip(chomp(read(`whoami`, String)))
+		run(`sudo chown -R $username:$username /usr/local/lib/R/site-library`) # check permissions
 	end	
 	
 	# Run the `which R` command to get the path to the R executable
