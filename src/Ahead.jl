@@ -27,16 +27,14 @@ module Ahead
 		username = strip(chomp(read(`whoami`, String)))
 		run(`sudo usermod -aG staff $username`)
 	end
-	
-	R"try(utils::install.packages(c('foreach', 'Rcpp', 'snow'), dependencies=TRUE), silent = TRUE)"
-	
-	R"install_ahead <- try(utils::install.packages('ahead', dependencies=TRUE), silent = TRUE)"
-	
-	R"if(inherits(install_ahead, 'try-error')) {dir.create('r_libs_user'); 
-	.libPaths('r_libs_user'); utils::install.packages('ahead', repos = c('https://techtonique.r-universe.dev', 'https://cloud.r-project.org'), lib='r_libs_user', dependencies=TRUE)}"	
-	
+
+	if Sys.islinux() || Sys.isapple()
+		run(`Rscript -e "utils::install.packages(c('foreach', 'Rcpp', 'snow', 'forecast'), repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+		run(`Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', dependencies=TRUE)"`)
+	end	
+		
 	R"load_ahead <- try(library(ahead), silent = TRUE)"
-	R"if(inherits(install_ahead, 'try-error')) {utils::install.packages('https://techtonique.r-universe.dev/src/contrib/ahead_0.9.0.tar.gz', repos = NULL, type = 'source', dependencies = TRUE); library(ahead)}"
+	R"if(inherits(load_ahead, 'try-error')) {utils::install.packages('https://techtonique.r-universe.dev/src/contrib/ahead_0.9.0.tar.gz', repos = NULL, type = 'source', dependencies = TRUE); library(ahead)}"
 	
 	function foo(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion				
