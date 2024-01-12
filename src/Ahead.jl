@@ -7,6 +7,10 @@ module Ahead
 		run(`ls -la`)
 		run(`sudo apt update`)
 		run(`sudo apt install r-base r-base-dev -y`)
+		run(`sudo apt-get install libcurl4-openssl-dev`)
+		run(`sudo apt update`)
+		run(`sudo apt upgrade`)
+		run(`Rscript --version`)
 	end	
 	
 	# Run the `which R` command to get the path to the R executable
@@ -28,8 +32,11 @@ module Ahead
 		run(`sudo usermod -aG staff $username`)
 	end
 
-	if Sys.islinux() || Sys.isapple()
-		run(`Rscript -e "utils::install.packages(c('foreach', 'Rcpp', 'snow', 'forecast'), repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+	if Sys.islinux() || Sys.isapple()		
+		run(`Rscript -e "utils::install.packages('foreach', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+		run(`Rscript -e "utils::install.packages('Rcpp', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+		run(`Rscript -e "utils::install.packages('snow', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+		run(`Rscript -e "utils::install.packages('forecast', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
 		run(`Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', dependencies=TRUE)"`)
 	end	
 		
