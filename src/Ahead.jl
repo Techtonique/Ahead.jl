@@ -128,32 +128,40 @@ module Ahead
 	  )
 
 	  if xreg == nothing
-		xreg = RNULL()
+		r_xreg = RNULL()
+	  else
+		r_xreg = xreg
 	  end
 
 	  if block_length == nothing	
-		block_length = RNULL()
+		r_block_length = RNULL()
+	  else
+		r_block_length = block_length
 	  end
 
 	  if centers == nothing
-		centers = RNULL()
+		r_centers = RNULL()
+	  else
+		r_centers = centers
 	  end
 
 	  if ym == nothing
-		ym = RNULL()
+		r_ym = RNULL()
+	  else
+		r_ym = ym
 	  end
 	  
 	  r_code = """
-	  ahead::ridge2f(y = $y, xreg = $xreg, h = $h, 
+	  ahead::ridge2f(y = $y, xreg = $r_xreg, h = $h, 
 	  level = $level, lags = $lags, nb_hidden = $nb_hidden, 
 	  nodes_sim = $nodes_sim, activ = $activ, a = $a, 
 	  lambda_1 = $lambda_1, lambda_2 = $lambda_2, 
 	  dropout = $dropout, type_forecast = $type_forecast,
-	  type_pi = $type_pi, block_length = $block_length, 
+	  type_pi = $type_pi, block_length = $r_block_length, 
 	  margins = $margins, seed = $seed, B = $B, 
 	  type_aggregation = $type_aggregation, 
-	  centers = $centers, type_clustering = $type_clustering, 
-	  ym = $ym, cl = $cl, show_progress = $show_progress, 
+	  centers = $r_centers, type_clustering = $type_clustering, 
+	  ym = $r_ym, cl = $cl, show_progress = $show_progress, 
 	  $args...)
 	  """
 
