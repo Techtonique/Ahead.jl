@@ -1,7 +1,7 @@
 module Ahead	
 
 	# exports 
-	export foo 
+	export dynrmf
 	
 	if Sys.islinux()		
 		run(`ls -la`)
