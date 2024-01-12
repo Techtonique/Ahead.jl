@@ -55,25 +55,6 @@ R"load_ahead <- try(library(ahead), silent = TRUE)"
 
 # univariate time series forecasting models ----------------------------------------------
 
-""" 
-
-	dynrmf(y, h = 5, level = 95)	
-
-Dynamic regression model 
-(see https://techtonique.r-universe.dev/ahead/doc/manual.html#dynrmf)
-
-# Details
-For now, the function uses only Ridge regression with automatic selection of the 
-regularization parameter.
-
-# Examples
-```julia
-using Ahead
-val = Ahead.dynrmf([1,2,3,4,5,6,7,8,9,10], h = 5, level = 95)   
-println(val)
-````
-
-"""
 function dynrmf(y, h = 5, level = 95)	
 	r_code = """
 	ahead::dynrmf(y = $y, h = $h, level = $level)
@@ -83,54 +64,6 @@ end
 
 # multivariate time series forecasting models ---------------------------------------------- 
 
-"""
-
-	ridge2f(
-	y,
-	xreg = nothing,
-	h = 5,
-	level = 95,
-	lags = 1,
-	nb_hidden = 5,
-	nodes_sim = "sobol",
-	activ = "relu",
-	a = 0.01,
-	lambda_1 = 0.1,
-	lambda_2 = 0.1,
-	dropout = 0,
-	type_forecast = "recursive",
-	type_pi = "gaussian",
-	block_length = nothing,
-	margins = "gaussian",
-	seed = 1,
-	B = 100,
-	type_aggregation = "mean",
-	centers = nothing,
-	type_clustering = "kmeans",
-	ym = nothing,
-	cl = 1,
-	show_progress = true,
-	args...
-	)
-
-Random Vector functional link (RVFL) nnetwork model with 2 regularization parameters
-(see https://techtonique.r-universe.dev/ahead/doc/manual.html#ridge2f)
-
-# Details
-The model provides methods for uncertainty quantification, notably with predictive 
-	simulations.
-
-# Examples
-```julia
-using Ahead
-using Distributions
-import Random
-Random.seed!(123)
-y = rand(100, 5)
-print(ridge2f(y, h = 5, level = 95))
-```
-
-""" 
 function ridge2f(
 	y,
 	xreg = nothing,
