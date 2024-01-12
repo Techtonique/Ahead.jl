@@ -52,9 +52,10 @@ module Ahead
 		
 	R"load_ahead <- try(library(ahead), silent = TRUE)"	
 	
-	function foo(x)
+	function dynrmf(x)
 		# https://juliainterop.github.io/RCall.jl/stable/custom/#Nested-conversion				
-		return rcopy(R"try(ahead::dynrmf(c(1, 2, 3, 4, 5)), silent = TRUE)")	
+		return rcopy(R"try(ahead::dynrmf($x), silent = TRUE)")	
 	end 	
 
 end
+
