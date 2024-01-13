@@ -11,8 +11,7 @@
 ### Docker 
 
 ```
-docker build -t ahead .
-docker run ahead 
+docker build -t ahead .&&docker run ahead 
 ```
 
 ### Install locally
