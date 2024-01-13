@@ -8,6 +8,15 @@
 
 ## Note to self or developers
 
+### Docker 
+
+```
+docker build -t ahead .
+docker run ahead 
+```
+
+### Install locally
+
 - Install `RCall`: https://juliainterop.github.io/RCall.jl/stable/installation/
 - Getting started with `RCall`: https://juliainterop.github.io/RCall.jl/latest/gettingstarted.html
 - Julia `RCall`: https://www.geeksforgeeks.org/julia-rcall/

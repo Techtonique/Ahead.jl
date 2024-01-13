@@ -8,6 +8,11 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     r-base \
     r-base-dev
+RUN Rscript -e "utils::install.packages('foreach', repos='https://cran.rstudio.com', dependencies=TRUE)"
+RUN Rscript -e "utils::install.packages('Rcpp', repos='https://cran.rstudio.com', dependencies=TRUE)"
+RUN Rscript -e "utils::install.packages('snow', repos='https://cran.rstudio.com', dependencies=TRUE)"
+RUN Rscript -e "utils::install.packages('forecast', repos='https://cran.rstudio.com', dependencies=TRUE)"
+RUN Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', dependencies=TRUE)"
 
 # Copy all files from the current directory to /app in the container
 COPY . .
