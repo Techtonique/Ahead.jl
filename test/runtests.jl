@@ -1,6 +1,4 @@
 using Ahead
-using Distributions
-using Random
 using Test
 
 @testset "Ahead.jl" begin
@@ -9,9 +7,8 @@ using Test
     println(val) 
     @test isapprox(round(val[:residuals][1]), 0)
 
-    rng = MersenneTwister(1234);
-    y = randexp(rng, 10, 3)
-    val = Ahead.ridge2f(y, 6)
+    y = rand(8, 2)
+    val = Ahead.ridge2f(y, 4)
     println(val) 
     @test val[:x] == y
 
