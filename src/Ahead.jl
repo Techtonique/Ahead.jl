@@ -2,6 +2,7 @@ module Ahead
 
 	# exports 
 	export dynrmf
+	export ridge2f
 		
 	if Sys.islinux()	
 		try	
@@ -48,6 +49,8 @@ module Ahead
 			run(`sudo Rscript -e "utils::install.packages('Rcpp', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
 			run(`sudo Rscript -e "utils::install.packages('snow', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
 			run(`sudo Rscript -e "utils::install.packages('forecast', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+			run(`sudo Rscript -e "utils::install.packages('randtoolbox', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+			run(`sudo Rscript -e "utils::install.packages('VineCopula', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
 			run(`sudo Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', dependencies=TRUE)"`)
 		catch e1		
 			try 	
@@ -55,6 +58,8 @@ module Ahead
 				run(`sudo Rscript -e "install.packages('Rcpp', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
 				run(`sudo Rscript -e "install.packages('snow', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
 				run(`sudo Rscript -e "install.packages('forecast', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
+				run(`sudo Rscript -e "install.packages('randtoolbox', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
+				run(`sudo Rscript -e "install.packages('VineCopula', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
 				run(`sudo Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', lib= '.', dependencies=TRUE)"`)
 			catch e2
 				println("Can't run Rscript")
@@ -64,11 +69,15 @@ module Ahead
 		end	
 	end
 		
-	R"load_ahead <- try(library(ahead), silent = TRUE)"		
+	R"load_ahead <- try(library(ahead), silent = TRUE)"
+	R"if(inherits(load_ahead, 'try-error')) {library(ahead, lib.loc='.')}"		
 	
 	function dynrmf(y, h)					
-		return rcopy(R"try(ahead::dynrmf($y, $h), silent = TRUE)")	
+		return rcopy(R"try(ahead::dynrmf(y=$y, h=$h), silent = TRUE)")	
 	end 	
 
+	function ridge2f(y, h)					
+		return rcopy(R"try(ahead::ridge2f(y=$y, h=$h), silent = TRUE)")	
+	end 	
 end
 
