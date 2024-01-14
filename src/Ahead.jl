@@ -72,11 +72,11 @@ module Ahead
 	R"load_ahead <- try(library(ahead), silent = TRUE)"
 	R"if(inherits(load_ahead, 'try-error')) {library(ahead, lib.loc='.')}"		
 	
-	function dynrmf(y, h)					
+	function dynrmf(y; h=5)					
 		return rcopy(R"try(ahead::dynrmf(y=$y, h=$h), silent = TRUE)")	
 	end 	
 
-	function ridge2f(y, h)					
+	function ridge2f(y; h=5)					
 		return rcopy(R"try(ahead::ridge2f(y=$y, h=$h), silent = TRUE)")	
 	end 	
 end
