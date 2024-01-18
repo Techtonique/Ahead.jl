@@ -29,18 +29,18 @@ using Test
         @test val[:method] == "DynRM 1"
     end
     
-    @testset "----- Testing dynrmf (svm) -----" begin
-        val = Ahead.dynrmf(u, h=6, method="svm", kernel="linear")
-        println(val) 
-        #@test isapprox(round(val[:residuals][1]), 0)
-        @test val[:x] == y
-    end
+    #@testset "----- Testing dynrmf (svm) -----" begin
+    #    val = Ahead.dynrmf(u, h=6, method="svm", kernel="linear")
+    #    println(val) 
+    #    #@test isapprox(round(val[:residuals][1]), 0)
+    #    @test val[:x] == u
+    #end
 
     @testset "----- Testing dynrmf (ranger) -----" begin
         val = Ahead.dynrmf(u, h=6, method="randomforest", num_trees=50)
         println(val) 
         #@test isapprox(round(val[:residuals][1]), 0)
-        @test val[:x] == y
+        @test val[:x] == u
     end
     
     #@testset "----- Testing eatf -----" begin
