@@ -114,8 +114,12 @@ module Ahead
 			else
 				kernel = "radial"
 			end
-			R"z <- ahead::dynrmf(fdeaths, h=20, level=95, fit_func = e1071::svm,
-			fit_params = list(kernel = $kernel), predict_func = predict)"
+			R"""
+			params <- list()
+			params[['kernel']] <- $kernel
+			z <- ahead::dynrmf(fdeaths, h=20, level=95, fit_func = e1071::svm,
+			fit_params = params, predict_func = predict)
+			"""
 			return rcopy(R"z")
 
 		elseif method == "randomforest"
