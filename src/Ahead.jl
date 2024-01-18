@@ -114,7 +114,7 @@ module Ahead
 			else
 				kernel = "radial"
 			end
-			R"z <- dynrmf(fdeaths, h=20, level=95, fit_func = e1071::svm,
+			R"z <- ahead::dynrmf(fdeaths, h=20, level=95, fit_func = e1071::svm,
 			fit_params = list(kernel = $kernel), predict_func = predict)"
 			return rcopy(R"z")
 
@@ -135,7 +135,7 @@ module Ahead
 			predict_func <- function(obj, newx)
 			{
 			colnames(newx) <- paste0("X", 1:ncol(newx)) # mandatory, linked to df in fit_func
-			predict(object=obj, data=newx)$predictions # only accepts a named newx
+			predict(object=obj, data=newx)[['predictions']] # only accepts a named newx
 			};			
 			z <- ahead::dynrmf(y=$y, h=$h, level=$level, 
 							fit_func = fit_func,
