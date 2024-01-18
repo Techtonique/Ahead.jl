@@ -50,10 +50,12 @@ module Ahead
 
 	if Sys.islinux() || Sys.isapple()
 		try	
-			run(`sudo Rscript -e "utils::install.packages('remotes', repos='https://cran.rstudio.com', dependencies=TRUE)"`)	
+			run(`sudo Rscript -e "utils::install.packages('remotes', repos='https://cran.rstudio.com', dependencies=TRUE)"`)				
 			run(`sudo Rscript -e "utils::install.packages('fGarch', repos='https://cran.rstudio.com', dependencies=TRUE)"`)	
 			run(`sudo Rscript -e "utils::install.packages('foreach', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
-			run(`sudo Rscript -e "utils::install.packages('forecast', repos=' https://cloud.r-project.org', dependencies=TRUE)"`)
+			run(`sudo Rscript -e "utils::install.packages('curl', repos='https://cran.rstudio.com', dependencies=TRUE)"`)	
+			run(`sudo Rscript -e "utils::install.packages('forecast', repos='https://cloud.r-project.org', dependencies=TRUE)"`)
+			run(`sudo Rscript -e "try(remotes::install_github('robjhyndman/forecast', dependencies=TRUE), silent=TRUE)"`)
 			run(`sudo Rscript -e "utils::install.packages('randtoolbox', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
 			run(`sudo Rscript -e "utils::install.packages('Rcpp', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
 			run(`sudo Rscript -e "utils::install.packages('snow', repos='https://cran.rstudio.com', dependencies=TRUE)"`)						
@@ -63,9 +65,11 @@ module Ahead
 		catch e1		
 			try 
 				run(`sudo Rscript -e "install.packages('remotes', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)	
-				run(`sudo Rscript -e "install.packages('fGarch', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)	
-				run(`sudo Rscript -e "install.packages('foreach', repos=' https://cloud.r-project.org', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
-				run(`sudo Rscript -e "install.packages('forecast', lib= '.', dependencies=TRUE)"`)												
+				run(`sudo Rscript -e "install.packages('fGarch', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)					
+				run(`sudo Rscript -e "install.packages('foreach', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
+				run(`sudo Rscript -e "install.packages('curl', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)	
+				run(`sudo Rscript -e "install.packages('forecast', repos='https://cloud.r-project.org', lib= '.', dependencies=TRUE)"`)												
+				run(`sudo Rscript -e "try(remotes::install_github('robjhyndman/forecast', lib= '.', dependencies=TRUE)"`)												
 				run(`sudo Rscript -e "install.packages('randtoolbox', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
 				run(`sudo Rscript -e "install.packages('Rcpp', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
 				run(`sudo Rscript -e "install.packages('snow', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
@@ -73,10 +77,10 @@ module Ahead
 				run(`sudo Rscript -e "remotes::install_github('robjhyndman/forecast', lib= '.', dependencies=TRUE)"`)
 				run(`sudo Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', lib= '.', dependencies=TRUE)"`)
 			catch e2
-				println("Can't run Rscript")
+				println("Done trying to install R packages")
 			end 
 		finally 
-			println("Can't run Rscript")
+			println("Done trying to install R packages")
 		end	
 	end
 		
