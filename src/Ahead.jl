@@ -141,9 +141,11 @@ module Ahead
 			colnames(newx) <- paste0("X", 1:ncol(newx)) # mandatory, linked to df in fit_func
 			predict(object=obj, data=newx)[['predictions']] # only accepts a named newx
 			};			
+			params <- list()
+			params[['num.trees']] <- $num_trees
 			z <- ahead::dynrmf(y=$y, h=$h, level=$level, 
 							fit_func = fit_func,
-							fit_params = list(num.trees = $num_trees),
+							fit_params = params,
 							predict_func = predict_func);
 			"""
 			return rcopy(R"z")					
