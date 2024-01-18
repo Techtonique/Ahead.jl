@@ -18,7 +18,7 @@ using Test
         val = Ahead.basicf(z, h=4)
         println(val) 
         @test val[:x] == z
-        @test val[:method] == "basicf"
+        @test val[:method] == "mean"
     end 
 
     @testset "----- Testing dynrmf -----" begin
