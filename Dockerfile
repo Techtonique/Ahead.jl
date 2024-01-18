@@ -8,6 +8,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     r-base \
     r-base-dev
+RUN apt-get install libcurl4-openssl-dev
 RUN Rscript -e "try(utils::install.packages('remotes', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"            
 RUN Rscript -e "try(utils::install.packages('fBasics', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"        
 RUN Rscript -e "try(utils::install.packages('fGarch', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"    
