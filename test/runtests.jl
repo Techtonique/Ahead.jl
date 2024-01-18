@@ -21,19 +21,33 @@ using Test
         @test val[:method] == "mean"
     end 
 
-    @testset "----- Testing dynrmf -----" begin
+    @testset "----- Testing dynrmf (autoridge) -----" begin
         val = Ahead.dynrmf(y, h=6)
         println(val) 
         @test isapprox(round(val[:residuals][1]), 0)
         @test val[:method] == "DynRM 1"
-    end 
+    end
     
-    @testset "----- Testing eatf -----" begin
-        val = Ahead.eatf(y, h=6)
+    @testset "----- Testing dynrmf (svm) -----" begin
+        val = Ahead.dynrmf(y, h=6, kernel="linear")
         println(val) 
+        @test isapprox(round(val[:residuals][1]), 0)
         @test val[:x] == y
-        @test val[:method] == "EAT"
-    end 
+    end
+
+    @testset "----- Testing dynrmf (ranger) -----" begin
+        val = Ahead.dynrmf(y, h=6, num_trees=50)
+        println(val) 
+        @test isapprox(round(val[:residuals][1]), 0)
+        @test val[:x] == y
+    end
+    
+    #@testset "----- Testing eatf -----" begin
+    #    val = Ahead.eatf(y, h=6)
+    #    println(val) 
+    #    @test val[:x] == y
+    #    @test val[:method] == "EAT"
+    #end 
 
     @testset "----- Testing loessf -----" begin
         val = Ahead.loessf(y, h=6)

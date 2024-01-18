@@ -96,8 +96,51 @@ module Ahead
 		return rcopy(R"ahead::eatf(y=$y, h=$h, level=$level)")	
 	end
 
-	function dynrmf(y; h=5, level=95)					
-		return rcopy(R"ahead::dynrmf(y=$y, h=$h, level=$level)")	
+	function dynrmf(y; h=5, level=95, method="autoridge", kwargs...)
+		
+		if method == "autoridge"
+
+			return rcopy(R"ahead::dynrmf(y=$y, h=$h, level=$level)")					
+
+		elseif method == "svm"
+
+			kwargs = Dict(kwargs)
+			if haskey(kwargs, "kernel")
+				kernel = kwargs["kernel"]
+			else
+				kernel = "radial"
+			end
+			R"z <- dynrmf(fdeaths, h=20, level=95, fit_func = e1071::svm,
+			fit_params = list(kernel = $kernel), predict_func = predict)"
+			return rcopy(R"z")
+
+		elseif method == "randomforest"
+
+			kwargs = Dict(kwargs)
+			if haskey(kwargs, "num_trees")
+				num_trees = kwargs["num_trees"]
+			else
+				num_trees = 500
+			end
+			R"""
+			fit_func <- function(x, y, ...)
+			{
+			df <- data.frame(y=y, x) # naming of columns is mandatory for `predict`
+			ranger::ranger(y ~ ., data=df, ...)
+			};			
+			predict_func <- function(obj, newx)
+			{
+			colnames(newx) <- paste0("X", 1:ncol(newx)) # mandatory, linked to df in fit_func
+			predict(object=obj, data=newx)$predictions # only accepts a named newx
+			};			
+			z <- ahead::dynrmf(y=$y, h=$h, level=$level, 
+							fit_func = fit_func,
+							fit_params = list(num.trees = $num_trees),
+							predict_func = predict_func);
+			"""
+			return rcopy(R"z")					
+
+		end	
 	end 	
 
 	function loessf(y; h=5, level=95)					
