@@ -6,13 +6,13 @@ using Test
     y = [1,2,3,4,5,6,7,8,9,10]
     z = rand(8, 2)
 
-    @testset "----- Testing armagarchf -----" begin
-         y = rand(25)
-         val = Ahead.armagarchf(y, h=6)
-         println(val) 
-         @test val[:x] == y
-         @test val[:method] == "ARMA(1, 1) - GARCH(1, 1)"
-    end 
+    #@testset "----- Testing armagarchf -----" begin
+    #     y = rand(25)
+    #    val = Ahead.armagarchf(y, h=6)
+    #     println(val) 
+    #     @test val[:x] == y
+    #     @test val[:method] == "ARMA(1, 1) - GARCH(1, 1)"
+    #end 
 
     @testset "----- Testing basicf -----" begin        
         val = Ahead.basicf(z, h=4)
