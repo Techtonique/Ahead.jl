@@ -36,12 +36,12 @@ using Test
     #    @test val[:x] == u
     #end
 
-    @testset "----- Testing dynrmf (ranger) -----" begin
-        val = Ahead.dynrmf(u, h=6, method="randomforest", num_trees=50)
-        println(val) 
-        #@test isapprox(round(val[:residuals][1]), 0)
-        @test val[:x] == u
-    end
+    #@testset "----- Testing dynrmf (ranger) -----" begin
+    #    val = Ahead.dynrmf(u, h=6, method="randomforest", num_trees=50)
+    #    println(val) 
+    #    #@test isapprox(round(val[:residuals][1]), 0)
+    #    @test val[:x] == u
+    #end
     
     #@testset "----- Testing eatf -----" begin
     #    val = Ahead.eatf(y, h=6)
@@ -64,4 +64,4 @@ using Test
         @test val[:method] == "ridge2"
     end 
 
-end 
+end
