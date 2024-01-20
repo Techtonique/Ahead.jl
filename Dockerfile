@@ -5,7 +5,7 @@ FROM julia:1.10
 WORKDIR /app
 
 # Install R and R development packages
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade && apt-get install -y \
     r-base \
     r-base-dev
 RUN apt-get install libcurl4-openssl-dev
