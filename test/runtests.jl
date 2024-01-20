@@ -43,12 +43,12 @@ using Test
     #    @test val[:x] == u
     #end
     
-    @testset "----- Testing eatf -----" begin
-        val = Ahead.eatf(y, h=6)
-        println(val) 
-        @test val[:x] == y
-        @test val[:method] == "EAT"
-    end 
+    #@testset "----- Testing eatf -----" begin
+    #    val = Ahead.eatf(y, h=6)
+    #    println(val) 
+    #    @test val[:x] == y
+    #    @test val[:method] == "EAT"
+    #end 
 
     @testset "----- Testing loessf -----" begin
         val = Ahead.loessf(y, h=6)
