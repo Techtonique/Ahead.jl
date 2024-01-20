@@ -14,6 +14,8 @@ module Ahead
 			run(`ls -la`)
 			run(`sudo apt update`)
 			run(`sudo apt install r-base r-base-dev -y`)
+			run(`sudo apt install libcurl-dev`)
+			run(`sudo apt install curl`)
 			run(`sudo apt-get install libcurl4-openssl-dev`)
 			run(`sudo apt update`)
 			run(`sudo apt upgrade`)
