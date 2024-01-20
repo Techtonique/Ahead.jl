@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     r-base-dev
 RUN apt-get install libcurl4-openssl-dev
 RUN Rscript -e "try(utils::install.packages('remotes', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"
+RUN Rscript -e "try(utils::install.packages('curl', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"
 RUN Rscript -e "try(utils::install.packages('ranger', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"            
 RUN Rscript -e "try(utils::install.packages('e1071', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"            
 RUN Rscript -e "try(utils::install.packages('fBasics', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"        
