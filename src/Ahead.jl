@@ -18,7 +18,7 @@ module Ahead
 			run(`sudo apt install libcurl-dev`)
 			run(`sudo apt install curl`)
 			run(`sudo apt-get install libcurl4-openssl-dev`)
-			run(`sudo apt-get install gfortran`)					
+			run(`sudo apt install gfortran`)					
 			run(`Rscript --version`)
 			#username = strip(chomp(read(`whoami`, String)))
 			#run(`sudo chown -R $username:$username /usr/local/lib/R/site-library`) # check permissions

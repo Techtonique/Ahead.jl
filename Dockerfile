@@ -8,6 +8,7 @@ WORKDIR /app
 RUN apt-get update && apt-get upgrade && apt-get install -y \
     r-base \
     r-base-dev
+RUN apt install gfortran
 RUN apt-get install libcurl4-openssl-dev
 RUN apt install curl
 RUN Rscript -e "try(utils::install.packages('remotes', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"
