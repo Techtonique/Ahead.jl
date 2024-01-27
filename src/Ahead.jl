@@ -11,21 +11,40 @@ module Ahead
 		
 	if Sys.islinux()	
 		try	
-			run(`ls -la`)
+			#run(`ls -la`)
 			run(`sudo apt update`)
+			run(`sudo apt upgrade`)
 			run(`sudo apt install r-base r-base-dev -y`)
 			run(`sudo apt install libcurl-dev`)
 			run(`sudo apt install curl`)
 			run(`sudo apt-get install libcurl4-openssl-dev`)
-			run(`sudo apt update`)
-			run(`sudo apt upgrade`)
+			run(`sudo apt-get install gfortran`)					
 			run(`Rscript --version`)
-			username = strip(chomp(read(`whoami`, String)))
-			run(`sudo chown -R $username:$username /usr/local/lib/R/site-library`) # check permissions
+			#username = strip(chomp(read(`whoami`, String)))
+			#run(`sudo chown -R $username:$username /usr/local/lib/R/site-library`) # check permissions
 		catch e
-			println("Either R is already installed, or can't be installed on this machine")
+			println("Either R is already installed, or can't be installed on this machine (check manually: https://cloud.r-project.org/)")
 		end 
 	end	
+
+	if Sys.isapple()
+		try
+			run(`brew update`)
+			run(`brew install gfortran`)
+			run(`brew install r`)
+			run(`Rscript --version`)
+		catch e
+			println("Either R is already installed, or can't be installed on this machine (check manually: https://cloud.r-project.org/)")
+		end
+	end
+
+	if Sys.iswindows()
+		try
+			run(`Rscript --version`)
+		catch e
+			println("Either R is already installed, or can't be installed on this machine (check manually): https://cloud.r-project.org/")
+		end
+	end
 	
 	# Run the `which R` command to get the path to the R executable
 	output = strip(chomp(read(`which R`, String)))
@@ -36,7 +55,7 @@ module Ahead
 		ENV["R_HOME"] = output
 		println("R_HOME set to: ", ENV["R_HOME"])
 	else
-		println("R executable not found.")
+		println("R executable not found on this machine. Please install R (https://cloud.r-project.org/) and try again.")
 	end
 
 	using RCall
@@ -50,7 +69,7 @@ module Ahead
 		end
 	end
 
-	if Sys.islinux() || Sys.isapple()
+	if Sys.islinux()
 		try	
 			run(`sudo Rscript -e "utils::install.packages('remotes', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
 			run(`sudo Rscript -e "utils::install.packages('curl', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
@@ -82,6 +101,46 @@ module Ahead
 				run(`sudo Rscript -e "install.packages('VineCopula', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
 				run(`sudo Rscript -e "try(remotes::install_github('robjhyndman/forecast', lib= '.', dependencies=TRUE), silent = TRUE)"`)
 				run(`sudo Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', lib= '.', dependencies=TRUE)"`)
+			catch e2
+				println("Done trying to install R packages")
+			end 
+		finally 
+			println("Done trying to install R packages")
+		end	
+	end
+
+	if Sys.isapple()
+		try	
+			run(`Rscript -e "utils::install.packages('remotes', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+			run(`Rscript -e "utils::install.packages('curl', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+			run(`Rscript -e "utils::install.packages('e1071', repos='https://cran.rstudio.com', dependencies=TRUE)"`)				
+			run(`Rscript -e "utils::install.packages('ranger', repos='https://cran.rstudio.com', dependencies=TRUE)"`)				
+			run(`Rscript -e "utils::install.packages('fGarch', repos='https://cran.rstudio.com', dependencies=TRUE)"`)	
+			run(`Rscript -e "utils::install.packages('foreach', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+			run(`Rscript -e "utils::install.packages('curl', repos='https://cran.rstudio.com', dependencies=TRUE)"`)				
+			run(`Rscript -e "try(utils::install.packages('forecast', repos='https://cran.rstudio.com', dependencies=TRUE), silent = TRUE)"`)
+			run(`Rscript -e "utils::install.packages('randtoolbox', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+			run(`Rscript -e "utils::install.packages('Rcpp', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+			run(`Rscript -e "utils::install.packages('snow', repos='https://cran.rstudio.com', dependencies=TRUE)"`)						
+			run(`Rscript -e "utils::install.packages('VineCopula', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
+			run(`Rscript -e "try(remotes::install_github('robjhyndman/forecast', dependencies=TRUE), silent = TRUE)"`)
+			run(`Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', dependencies=TRUE)"`)
+		catch e1		
+			try 
+				run(`Rscript -e "install.packages('remotes', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)	
+				run(`Rscript -e "install.packages('curl', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)	
+				run(`Rscript -e "install.packages('e1071', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)	
+				run(`Rscript -e "install.packages('ranger', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)	
+				run(`Rscript -e "install.packages('fGarch', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)					
+				run(`Rscript -e "install.packages('foreach', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
+				run(`Rscript -e "install.packages('curl', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)					
+				run(`Rscript -e "try(install.packages('forecast', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE), silent = TRUE)"`)												
+				run(`Rscript -e "install.packages('randtoolbox', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
+				run(`Rscript -e "install.packages('Rcpp', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
+				run(`Rscript -e "install.packages('snow', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
+				run(`Rscript -e "install.packages('VineCopula', repos='https://cran.rstudio.com', lib= '.', dependencies=TRUE)"`)
+				run(`Rscript -e "try(remotes::install_github('robjhyndman/forecast', lib= '.', dependencies=TRUE), silent = TRUE)"`)
+				run(`Rscript -e "utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', lib= '.', dependencies=TRUE)"`)
 			catch e2
 				println("Done trying to install R packages")
 			end 
