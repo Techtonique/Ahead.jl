@@ -17,11 +17,12 @@ RUN Rscript -e "try(utils::install.packages('e1071', repos='https://cran.rstudio
 RUN Rscript -e "try(utils::install.packages('fBasics', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"        
 RUN Rscript -e "try(utils::install.packages('fGarch', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"    
 RUN Rscript -e "try(utils::install.packages('foreach', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"
-RUN Rscript -e "try(utils::install.packages('forecast', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"
 RUN Rscript -e "try(utils::install.packages('randtoolbox', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"
 RUN Rscript -e "try(utils::install.packages('Rcpp', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"
 RUN Rscript -e "try(utils::install.packages('snow', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"
 RUN Rscript -e "try(utils::install.packages('VineCopula', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"
+RUN Rscript -e "try(utils::install.packages('tseries', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"
+RUN Rscript -e "try(utils::install.packages('forecast', repos='https://cran.rstudio.com', dependencies=TRUE), silent=TRUE)"
 RUN Rscript -e "try(remotes::install_github('robjhyndman/forecast', dependencies=TRUE), silent=TRUE)"
 RUN Rscript -e "try(utils::install.packages('ahead', repos='https://techtonique.r-universe.dev', dependencies=TRUE), silent=TRUE)"
 
