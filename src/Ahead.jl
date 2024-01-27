@@ -30,8 +30,8 @@ module Ahead
 	if Sys.isapple()
 		try
 			run(`brew update`)
-			run(`brew install gfortran`)
-			run(`brew install r`)
+			run(`brew install gcc || brew upgrade gcc`) # for gfortran
+			run(`brew install r || brew upgrade r`)
 			run(`Rscript --version`)
 		catch e
 			println("Either R is already installed, or can't be installed on this machine (check manually: https://cloud.r-project.org/)")
