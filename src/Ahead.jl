@@ -154,14 +154,54 @@ module Ahead
 	end
 		
 	R"""
-	load_ahead <- try(library(ahead), silent = TRUE)
-	if(inherits(load_ahead, 'try-error')) 
+	load_ahead <- NULL
+	load_ahead2 <- NULL
+	load_ahead3 <- NULL
+	load_ahead4 <- NULL
+
+	load_ahead <- try(library('ahead'),
+					silent = TRUE)
+
+	if (inherits(load_ahead, 'try-error'))
 	{
-		load_ahead2 <- try(library(ahead, lib.loc='.'), silent = TRUE)
+	load_ahead2 <- try(library('ahead',
+								lib.loc = '.'),
+						silent = TRUE)
 	}
-	if(inherits(load_ahead2, 'try-error')) {
-		stop('Please install the ahead package (first) manually from https://techtonique.r-universe.dev)')		
+
+	if (inherits(load_ahead2, 'try-error')) {
+	try(utils::install.packages(c('foreach', 'snow', 'Rcpp'), 
+								dependencies = TRUE), 
+		silent = TRUE)
+	try(utils::install.packages("ahead", 
+								dependencies = TRUE,
+								repos = 'https://techtonique.r-universe.dev'),
+		silent = TRUE)
+	load_ahead3 <- try(library('ahead'),
+						silent = TRUE)
 	} 
+
+	if (inherits(load_ahead3, 'try-error')) {
+	try(utils::install.packages(c('foreach', 'snow', 'Rcpp'), 
+								dependencies = TRUE, lib='.'), 
+		silent = TRUE)
+	try(utils::install.packages("ahead", 
+								dependencies = TRUE,
+								repos = 'https://techtonique.r-universe.dev', lib = '.'),
+		silent = TRUE)
+	load_ahead4 <- try(library('ahead', 
+								dependencies = TRUE,
+								lib.loc = '.'),
+						silent = TRUE)
+	} 
+
+	list_err <- list(load_ahead, load_ahead2, load_ahead3, load_ahead4)
+
+	if (all(sapply(list_err, function(x) inherits(x, 'try-error')))) {
+	stop(
+		'Please install the ahead package (first) manually from https://techtonique.r-universe.dev)'
+	)
+	}  
 	"""
 	
 	# univariate -----
