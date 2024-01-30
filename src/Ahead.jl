@@ -153,9 +153,16 @@ module Ahead
 		end	
 	end
 		
-	R"load_ahead <- try(library(ahead), silent = TRUE)"
-	R"if(inherits(load_ahead, 'try-error')) load_ahead2 <- try(library(ahead, lib.loc='.'), silent = TRUE)"		
-	R"if(inherits(load_ahead2, 'try-error')) stop('Please install the ahead package (first) manually from https://techtonique.r-universe.dev')"		
+	R"""
+	load_ahead <- try(library(ahead), silent = TRUE)
+	if(inherits(load_ahead, 'try-error')) 
+	{
+		load_ahead2 <- try(library(ahead, lib.loc='.'), silent = TRUE)
+	}
+	if(inherits(load_ahead2, 'try-error')) {
+		stop('Please install the ahead package (first) manually from https://techtonique.r-universe.dev)')		
+	} 
+	"""
 	
 	# univariate -----
 	function armagarchf(y; h=5, level=95)
