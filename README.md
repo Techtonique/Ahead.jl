@@ -11,16 +11,8 @@ and it follows its API as closely as possible: see https://techtonique.r-univers
 
 ## Installation
 
-For now: 
-
 ```julia
 julia> using Pkg; Pkg.add(path = "https://github.com/Techtonique/Ahead.jl")
-```
-
-Maybe ulimately: 
-
-```julia
-julia> using Pkg; Pkg.add("Ahead")
 ```
 
 ## Examples
