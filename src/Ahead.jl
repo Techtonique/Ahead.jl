@@ -46,16 +46,17 @@ module Ahead
 		end
 	end
 	
-	# Run the `which R` command to get the path to the R executable
-	output = strip(chomp(read(`which R`, String)))
-
-	# Check if the output is not an empty string (R executable path found)
-	if output != ""
-		# Set the obtained R executable path to ENV["R_HOME"]
-		ENV["R_HOME"] = output
-		println("R_HOME set to: ", ENV["R_HOME"])
-	else
-		println("R executable not found on this machine. Please install R (https://cloud.r-project.org/) and try again.")
+	if Sys.isapple() || Sys.islinux() || Sys.iswindows()
+		# Run the `which R` command to get the path to the R executable
+		output = strip(chomp(read(`which R`, String)))
+		# Check if the output is not an empty string (R executable path found)
+		if output != ""
+			# Set the obtained R executable path to ENV["R_HOME"]
+			ENV["R_HOME"] = output
+			println("R_HOME is: ", ENV["R_HOME"])
+		else
+			println("R executable not found on this machine. Please install R (https://cloud.r-project.org/) and try again.")
+		end
 	end
 
 	using RCall
@@ -111,7 +112,7 @@ module Ahead
 		end	
 	end
 
-	if Sys.isapple()
+	if Sys.isapple() || Sys.iswindows()
 		try	
 			run(`Rscript -e "utils::install.packages('remotes', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
 			run(`Rscript -e "utils::install.packages('curl', repos='https://cran.rstudio.com', dependencies=TRUE)"`)
@@ -154,7 +155,7 @@ module Ahead
 		
 	R"load_ahead <- try(library(ahead), silent = TRUE)"
 	R"if(inherits(load_ahead, 'try-error')) load_ahead2 <- try(library(ahead, lib.loc='.'), silent = TRUE)"		
-	R"if(inherits(load_ahead2, 'try-error')) stop('Please install the ahead package manually from https://techtonique.r-universe.dev')"		
+	R"if(inherits(load_ahead2, 'try-error')) stop('Please install the ahead package (first) manually from https://techtonique.r-universe.dev')"		
 	
 	# univariate -----
 	function armagarchf(y; h=5, level=95)
