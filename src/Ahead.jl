@@ -42,7 +42,7 @@ module Ahead
 		try
 			run(`Rscript --version`)
 		catch e
-			println("Either R is already installed, or can't be installed on this machine (check manually): https://cloud.r-project.org/")
+			println("Either R is already installed, or can't be installed on this machine (check manually: https://cloud.r-project.org/)")
 		end
 	end
 	
