@@ -2,8 +2,7 @@
 
 Univariate and multivariate time series forecasting with uncertainty quantification (including simulation).
 
-[![Build Status](https://github.com/Techtonique/Ahead.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/Techtonique/Ahead.jl/actions/workflows/CI.yml?query=branch%3Amain) [![CodeFactor](https://www.codefactor.io/repository/github/techtonique/ahead.jl/badge)](https://www.codefactor.io/repository/github/techtonique/ahead.jl) [![HitCount](https://hits.dwyl.com/Techtonique/Aheadjl.svg?style=flat-square&show=unique)](http://hits.dwyl.com/Techtonique/Aheadjl)
-
+[![Build Status](https://github.com/Techtonique/Ahead.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/Techtonique/Ahead.jl/actions/workflows/CI.yml?query=branch%3Amain) [![CodeFactor](https://www.codefactor.io/repository/github/techtonique/ahead.jl/badge)](https://www.codefactor.io/repository/github/techtonique/ahead.jl) 
 ## Documentation
 
 This package is a Julia wrapper for [R package `ahead`](https://github.com/Techtonique/ahead), 
