@@ -1,7 +1,7 @@
 name = "Ahead"
 uuid = "e561dd4c-0aa7-4ba4-aacb-df50ed0db7d4"
 authors = ["thierrymoudiki <thierry.moudiki@gmail.com>"]
-version = "0.1.0"
+version = "0.11.0"
 
 [compat]
 Distributions = "0.25.107"
