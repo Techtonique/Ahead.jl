@@ -56,7 +56,7 @@ docker build -t ahead .&&docker run ahead
 - Getting started with `RCall`: https://juliainterop.github.io/RCall.jl/latest/gettingstarted.html
 - Julia `RCall`: https://www.geeksforgeeks.org/julia-rcall/
 
-```R
+```julia
 $ rm -rf ~/.julia/compiled # clearing cache
 $ rm -rf ~/.julia/lib # clearing cache
 julia> using Pkg; Pkg.rm("Ahead")
